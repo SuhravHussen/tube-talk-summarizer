@@ -62,26 +62,33 @@ export async function POST({ request }) {
 		const response = await cohere.summarize({
 			text: text,
 			length: 'long',
-			format: 'bullets',
-			model: 'command',
-			additional_command: '',
-			temperature: 0.3
+			format: 'paragraph',
+			model: 'command-nightly',
+			additional_command: `This data is from youtube video. give me output so that I can use it to show the summary.video link ${link}`,
+			temperature: 0.1
 		});
 
-		const points = response.body.summary.split(/-/); // Split the summarized content into bullet points.
+		if (response.statusCode !== 200) {
+			return json({
+				data: '',
+				error: true,
+				// @ts-ignore
+				message: 'something went wrong! maybe the video is too long'
+			});
+		}
 
 		return json({
-			data: points,
+			data: response.body.summary,
 			error: false,
 			message: 'Summarized transcripts'
 		});
 	} catch (e) {
 		console.log(e);
 		return json({
-			data: [],
+			data: '',
 			error: true,
 			// @ts-ignore
-			message: e.message || 'Something went wrong'
+			message: 'Something went wrong'
 		});
 	}
 }

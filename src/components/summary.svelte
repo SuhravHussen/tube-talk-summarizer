@@ -1,18 +1,14 @@
 <script>
-	/** @type {Array<string>} */
-	export let points;
+	/** @type {string} */
+	export let summary;
 </script>
 
 <div class="summary-container" />
 <div class="summary" style="--accent-color:#41516C">
 	<div class="date">Summary</div>
-	<ul class="descr">
-		{#each points as point}
-			<li class="point">
-				<p>{point}</p>
-			</li>
-		{/each}
-	</ul>
+	<p class="descr">
+		{summary}
+	</p>
 </div>
 
 <style>
@@ -79,6 +75,7 @@
 		border-bottom-left-radius: 10px;
 		border-bottom-right-radius: 10px;
 		font-size: 20px;
+		text-align: left;
 	}
 
 	.point {

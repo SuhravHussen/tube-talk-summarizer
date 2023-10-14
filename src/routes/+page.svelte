@@ -13,8 +13,8 @@
 	/**  @type {boolean} */
 	let loading = false; // This variable indicates whether the process is loading.
 
-	/**  @type {Array<string>} */
-	let summarization = []; // This variable will hold the summarized content.
+	/**  @type {string} */
+	let summarization = ''; // This variable will hold the summarized content.
 
 	// Regular expression to validate the YouTube URL
 	const regex = /https:\/\/youtu\.be\/[a-zA-Z0-9_-]+(\?.*)?/;
@@ -23,7 +23,7 @@
 		try {
 			error = ''; // Clear any previous errors.
 			loading = true; // Set the loading flag to true.
-			summarization = []; // Clear the summary content.
+			summarization = ''; // Clear the summary content.
 
 			if (!link) {
 				error = 'Please provide a link'; // Display an error if the link is empty.
@@ -79,7 +79,7 @@
 		{/if}
 
 		{#if summarization.length > 0}
-			<Summary points={summarization.slice(1)} />
+			<Summary summary={summarization} />
 			<!-- Display the summary if there is content available. -->
 		{/if}
 	</div>
