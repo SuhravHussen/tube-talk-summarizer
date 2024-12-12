@@ -63,7 +63,7 @@ export async function POST({ request }) {
 			text: text,
 			length: 'long',
 			format: 'paragraph',
-			model: 'command-nightly',
+			model: 'command-r-plus',
 			additional_command: `This data is from youtube video. give me output so that I can use it to show the summary.video link ${link}`,
 			temperature: 0.1
 		});
